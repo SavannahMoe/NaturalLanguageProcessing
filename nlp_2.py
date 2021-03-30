@@ -51,3 +51,24 @@ import matplotlib.pyplot as plt
 df.plot.bar(x = "word", y = "count",rot=0, legend=False, color=["y", "c","m","b","g","r"])
 plt.gcf().tight_layout()
 plt.show()
+
+#WORDCLOUD
+ 
+from pathlib import Path
+from wordcloud import WordCloud
+import imageio
+
+text = Path("RomeoAndJuliet.txt").read_text()
+print(text)
+
+mask_image = imageio.imread("mask_heart.png")
+
+wordcloud = WordCloud(colormap="prism", mask=mask_image, background_color="white")
+
+wordcloud = wordcloud.generate(text) #generates the word cloud from the text 
+
+wordcloud = wordcloud.to_file("RomeoAndJulietHeart.png")
+
+plt.imshow(wordcloud)
+
+
